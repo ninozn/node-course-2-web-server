@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000; //get heroku port or 3000 if localhost
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -19,6 +20,9 @@ app.use((req, res, next) => {
     });
     next();
 });
+
+
+
 
 // app.use((req, res, next) => {
 //     res.render('maintenance.hbs', {
@@ -56,6 +60,6 @@ app.get('/bad', (req, res) => {
    })
 });
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 });
